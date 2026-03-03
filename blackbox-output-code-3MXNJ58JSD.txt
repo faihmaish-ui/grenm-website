@@ -1,0 +1,56 @@
+flowchart TD
+    %% Styles
+    classDef hub fill:#f0f4f8,stroke:#0056b3,stroke-width:2px,color:#333;
+    classDef service fill:#e3f2fd,stroke:#0288d1,stroke-width:1px,color:#333;
+    classDef client fill:#e1f5fe,stroke:#01579b,stroke-width:2px,rx:5,ry:5;
+    classDef free fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px,rx:5,ry:5;
+    classDef admin fill:#fff3e0,stroke:#e65100,stroke-width:2px,rx:5,ry:5;
+    classDef footer fill:#263238,stroke:#000,stroke-width:0px,color:#fff;
+
+    %% MAIN HUB
+    Start((Homepage)):::hub --> Nav{Navigation Bar}:::hub
+    Nav --> Ser[Services Menu]:::hub
+    
+    %% SERVICES SECTION
+    Ser --> A[💼 Freelance Marketplace]:::service
+    Ser --> B[📅 Events & Recruitment]:::service
+    Ser --> C[🛂 Visa & Immigration]:::service
+    Ser --> D[🎓 Education]:::service
+    Ser --> E[🌱 Green Solutions]:::service
+
+    %% FREELANCE MARKETPLACE FLOW (The Core)
+    A --> Core{Freelance Marketplace}:::hub
+    
+    %% CLIENT FLOW (Blue)
+    Core -->|Role| C_Act[Client Dashboard]:::client
+    C_Act --> C_Post[Post Project]:::client
+    C_Post --> C_Match[Matching Algorithm]:::client
+    C_Match --> C_Hire[Hire Professional]:::client
+    C_Hire --> C_Work[Manage Project]:::client
+    C_Work --> C_Pay[Release Payment]:::client
+    C_Pay --> C_Review[Leave Review]:::client
+
+    %% FREELANCER FLOW (Green)
+    Core -->|Role| F_Act[Freelancer Profile]:::free
+    F_Act --> F_Bid[Browse & Bid]:::free
+    F_Bid --> F_Accept[Accept Job]:::free
+    F_Accept --> F_Milestones[Complete Milestones]:::free
+    F_Milestones --> F_Pay[Receive Payment]:::free
+    F_Pay --> F_Rating[Get Rated]:::free
+
+    %% ADMIN FLOW (Orange/Dark)
+    Core -->|Role| Admin[Admin Panel]:::admin
+    Admin --> Ad_User[User Management]:::admin
+    Admin --> Ad_Pay[Payment Oversight]:::admin
+    Admin --> Ad_Ana[Analytics]:::admin
+    Admin --> Ad_Cont[Content Moderation]:::admin
+
+    %% FOOTER & BLOG
+    Nav --> Blog[Blog / Resources]:::hub
+    Nav --> Contact[Contact Us]:::hub
+    Nav --> Foot[Footer / Legal]:::footer
+
+    %% Links between flows
+    C_Pay -.->|Funds Escrow| F_Pay
+    C_Review -.->|Updates Profile| F_Rating
+    
